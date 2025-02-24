@@ -46,15 +46,45 @@ body {
   display:flex;
   flex-direction: column;
   min-height:50vh;
-  width:50%;
   background:var(--background);
   padding:2rem;
+  color:var(--color-white);
 }
 
-.table-label{
-  text-align: center;
-  color:var(--white-color);
-  font-weight: bold;
+
+thead{
+  th{
+    cursor:pointer
+  }
+}
+
+.table{
+
+  &-row{
+    display:block;
+  }
+
+  &-label,
+  &-entry{
+    width:100px;
+    padding:.55rem;
+    text-align: center;
+    color:var(--white-color);
+    font-weight: bold;
+  }
+
+  &-label{
+    background: gray;
+    border: 2px solid blue;
+  }
+    &-entry{
+      background: blue;
+      order: 2px solid grey;
+    }
+}
+
+.table-label,.table-entry{
+ 
 }
 
 
