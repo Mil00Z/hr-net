@@ -1,24 +1,37 @@
 "use client";
 
+import {useSelector} from 'react-redux';
+
 import Link from 'next/link'
+
+import DataTable from '@/components/DataTable/Datatable';
+
+
 
 // import '@/styles/pages/NotFound.scss'
 
 const EmployeesList = () => {
 
+  const employeesDatas = useSelector((state) => state.user.employees)
+
+
   return (
     <>
-    <div id="employee-div" className="container">
+    <section id="employee-div" className="container">
+      
+      <div className="headline">
+        Number of Available Employees: {employeesDatas.length}
+      </div>
 
-      <h1>Current Employees </h1>
+      <h1>Current Employees</h1>
 
-      <table id="employee-table" className="display data-table">
-        <p className="table-label">Table of datas of Employees Updates by Form</p>
-      </table>
+      <DataTable drillingDatas={employeesDatas} /> 
 
-      <Link href="/" className="btn">Home</Link>
+      {employeesDatas.length === 0 ? (<p>'No data available in table'</p>): null }
 
-    </div> 
+    </section> 
+
+    <Link href="/" className="btn">Home</Link>
     </>
 
     )
