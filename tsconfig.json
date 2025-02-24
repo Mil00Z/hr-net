@@ -23,6 +23,7 @@
       "@/styles/*": ["src/styles/*"],
       "@/components/*": ["src/components/*"],
       "@/redux/*": ["src/redux/*"],
+      "@/datas/*": ["src/datas/*"],
     
     }
   },
