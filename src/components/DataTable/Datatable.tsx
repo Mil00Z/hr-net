@@ -2,6 +2,7 @@ import {useSelector} from 'react-redux';
 
 import mock from '@/datas/mockTest';
 
+import '@/styles/components/Datatable.scss';
 
 
 const DataTable = ({drillingDatas}) => {
