@@ -1,23 +1,23 @@
 import {useSelector} from 'react-redux';
 
-import mock from '@/datas/mockTest'
+import mock from '@/datas/mockTest';
 
-const DataTable = (props) => {
 
-  const {drillingDatas} = props; 
 
+const DataTable = ({drillingDatas}) => {
+
+ 
   const employees = useSelector((state) => state.user.employees);
 
-  //backUp Data
+  //backUp Data to testing 
   localStorage.setItem('employees', JSON.stringify(employees));
+
 
   //testing data Callback
   const colLabels = Object.keys(employees[0] ? employees[0] : mock[0]);
   const rowdatas = employees.length > 0 ? employees : mock;
 
-  console.log(employees);
-
-
+ 
   return(
     <>
       <table id="employee-table" className="display data-table">
@@ -34,13 +34,13 @@ const DataTable = (props) => {
 
         
         <tbody>
-          {rowdatas.map((obj,index) => {
+          {rowdatas.map((row,index) => {
            
             return(
               <tr key={`id-${index}`} className="">
-                {Object.values(obj).map((entry,index) => {
+                {Object.values(row).map((cell,index) => {
                   return(
-                    <td key={`entry-${index}`} className="table-entry">{entry.length !== 0 ? entry :'❌'}</td>
+                    <td key={`entry-${index}`} className="table-entry">{cell.length !== 0 ? cell :'❌'}</td>
                   )  
                 })} 
               </tr>
