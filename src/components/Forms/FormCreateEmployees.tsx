@@ -1,8 +1,11 @@
 "use client";
 
-import {useState,useEffect} from 'react';
+import {useState,useEffect} from 'react'; 
 import {useSelector,useDispatch} from 'react-redux';
 import {nanoid} from '@reduxjs/toolkit';
+
+import states from '@/datas/states.json';
+import departments from '@/datas/departments.json';
 
 import { employeesSlice } from '@/redux/employees/employesSlice';
 
@@ -11,35 +14,40 @@ const FormCreateEmployees = () => {
 
   const quickStore = useSelector((state) => state.user);
 
-
   const dispatch = useDispatch();
+
+
+  const statesAvailables = states.map((state,index) =>{
+    return( <option key={`state-${state.id}`} value={state.abbreviation}>{state.name}</option>)
+
+  });
+
+  const departmentsAvailables = departments.map((department,index) =>{
+
+    return (<option key={`departement-${department.id}`} value={department.name}>{department.name}</option>)
+  })
 
 
 
   function saveEmployee(event) {
     
-
     event.preventDefault();
 
     const formDatas = new FormData(event.target);
 
-    let copyDatas = Object.fromEntries(formDatas)
+    const copyDatas = Object.fromEntries(formDatas);
 
     const employeeData = {...copyDatas,id:nanoid()}
 
 
     //Update Store
     dispatch(employeesSlice.actions.setEmployees([...quickStore.employees,employeeData]));
-
-  
-    //Check Update
-    // console.log(quickStore)
-
   }
 
+   
   return(
     <>
-    <form action="/" id="create-employee" onSubmit={()=>{saveEmployee(event)}}>
+    <form action="/" id="create-employee" onSubmit={()=>{saveEmployee(event)}} className="flex flex-col p-4">
 
           <label htmlFor="firstName" className="input-label">First Name</label>
           <input type="text" id="firstName" name="firstName"/>
@@ -55,37 +63,36 @@ const FormCreateEmployees = () => {
 
 
           <fieldset className="address">
-                    <legend>Address</legend>
+            <legend>Address</legend>
 
-                    <label htmlFor="street" className="input-label">Street</label>
-                    <input id="street" name="street" type="text" />
+            <label htmlFor="street" className="input-label">Street</label>
+             <input id="street" name="street" type="text" />
 
-                    <label htmlFor="city" className="input-label">City</label>
-                    <input id="city" name="city" type="text" />
+            <label htmlFor="city" className="input-label">City</label>
+            <input id="city" name="city" type="text" />
 
-                    <label htmlFor="state" className="input-label">State</label>
-                    <select name="state" name="state" id="state"></select>
+            <label htmlFor="state" className="input-label">State</label>
+            <select name="state" id="state">
+                {statesAvailables}
+            </select>
 
-                    <label htmlFor="zipCode" className="input-label">Zip Code</label>
-                    <input id="zipCode" name="zipCode	" type="number" />
+            <label htmlFor="zipCode" className="input-label">Zip Code</label>
+            <input id="zipCode" name="zipCode	" type="number"/>
+                    
+            {/* <input id="zipCode" name="zipCode	" type="text" min="00000" max="99999 "pattern="[0-9]{5}" required /> */}
+
             </fieldset>
 
           <label htmlFor="department" className="input-label">Department</label>
           <select name="department" id="department" name="department">
-                    <option>Sales</option>
-                    <option>Marketing</option>
-                    <option>Engineering</option>
-                    <option>Human Resources</option>
-                    <option>Legal</option>
+                    {departmentsAvailables}
           </select>
 
 
-          <button className="btn" type="submit">Save</button>       
+          <button className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded mt-8" type="submit">Save</button>       
         </form>
-
-        
-
       </>
+
   )
 }
 export default FormCreateEmployees
