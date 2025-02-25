@@ -1,105 +1,11 @@
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-  --black-color:#222;
-  --white-color:#FFF;
-  --debeug-color:crimson;
-  --debeug:3px dotted var(--debeug-color);
-}
+@use 'base/_base.scss';
 
 
 
-body {
-  color: var(--color);
-  background: var(--background);
-  font: {
-    size:var(--body-font-size);
-    family: Arial, Helvetica, sans-serif;
-  } 
-}
-
-.skeleton {
-  display:flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  row-gap:3rem;
-}
- 
-.container{
-  background:var(--foreground);
-  padding:2rem;
-
-  color:var(--black-color);
-
-  select{
-    background:var(--black-color);
-    color:var(--white-color);
-  }
-}
-
-.debeug{
-  outline:var(--debeug);
-}
-
-.data-table{
-  display:flex;
-  flex-direction: column;
-  min-height:50vh;
-  background:var(--background);
-  padding:2rem;
-  color:var(--color-white);
-}
 
 
-thead{
-  th{
-    cursor:pointer
-  }
-}
-
-.table{
-
-  &-row{
-    display:block;
-  }
-
-  &-label,
-  &-entry{
-    width:100px;
-    padding:.55rem;
-    text-align: center;
-    color:var(--white-color);
-    font-weight: bold;
-  }
-
-  &-label{
-    background: gray;
-    border: 2px solid blue;
-  }
-    &-entry{
-      background: blue;
-      order: 2px solid grey;
-    }
-}
-
-.table-label,.table-entry{
- 
-}
 
 
-.btn{
-  background-color:var(--white-color);
-  color:var(--black-color);
-  padding:1rem;
-}
 
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-    --color:white;
-    --body-font-size:1rem;
-  }
-}
+
