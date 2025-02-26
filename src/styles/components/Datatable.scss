@@ -1,8 +1,14 @@
+.datas-container{
+
+  background:var(--background);
+
+}
+
 .data-table{
   display:flex;
   flex-direction: column;
   min-height:50vh;
-  background:var(--background);
+
   padding:2rem;
   color:var(--color-white);
 }
