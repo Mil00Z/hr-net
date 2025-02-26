@@ -8,9 +8,12 @@ import '@/styles/components/Datatable.scss';
 
 const DataTable = ({drillingDatas}) => {
 
-  const [search,setSearch] = useState('');
- 
   const employees = useSelector((state) => state.user.employees);
+
+  const rowDatas = employees.length > 0 ? employees : mock;
+
+  const [filteredDatas,setFilteredDatas] = useState(rowDatas);
+ 
 
   //backUp Data to testing 
   localStorage.setItem('employees', JSON.stringify(employees));
@@ -32,32 +35,32 @@ const DataTable = ({drillingDatas}) => {
   //   { title: 'Zip Code'}
   // ];
 
-  const rowdatas = employees.length > 0 ? employees : mock;
+  
 
   function globalSearch(element){
 
-    setSearch(element);
     console.log(element)
 
-    const filteredElements = mock.filter((row) =>{
+    if(filteredDatas.length === 0){
 
-      const lastNameFilter = row.lastName.toLowerCase().includes(element.toLowerCase());
-      const firstNameFilter = row.firstName.toLowerCase().includes(element.toLowerCase());
-      const dateOfBirthFilter = row.dateBirth.toLowerCase().includes(element.toLowerCase());
-      const cityFilter = row.city.toLowerCase().includes(element.toLowerCase());
-      const departmentFilter = row.department.toLowerCase().includes(element.toLowerCase());
-      const startDateFilter = row.startDate.toLowerCase().includes(element.toLowerCase());
-      const streetFilter = row.street.toLowerCase().includes(element.toLowerCase());
-      const zipCodeFilter = row.zipCode.toLowerCase().includes(element.toLowerCase());
+      setFilteredDatas(rowDatas);
 
-      return lastNameFilter || firstNameFilter || dateOfBirthFilter || cityFilter || departmentFilter || startDateFilter || streetFilter || zipCodeFilter;
-    })
+    } else {
 
-    console.log(filteredElements);
+      const filteredSearch = filteredDatas.filter((row) =>{
+  
+        return Object.values(row).some((value) =>{
+          return value.toLowerCase().includes(element.toLowerCase());
+        })
+      })
+  
+      setFilteredDatas(filteredSearch);
+
+    }
     
   }
 
- 
+
   return(
     <>
       
@@ -69,7 +72,7 @@ const DataTable = ({drillingDatas}) => {
         
       </div>
 
-      <table id="employee-table" className="display data-table">
+      <table id="employee-table" className="data-table">
           
         <thead>
           <tr>
@@ -83,18 +86,29 @@ const DataTable = ({drillingDatas}) => {
 
         
         <tbody>
-          {mock.map((row,index) => {
-           
-            return(
-              <tr key={`id-${index}`} className="">
-                {Object.values(row).map((cell,index) => {
-                  return(
-                    <td key={`entry-${index}`} className="table-entry">{cell.length !== 0 ? cell :'❌'}</td>
-                  )  
-                })} 
-              </tr>
-            )     
-          })} 
+
+{ filteredDatas.length > 0 ? (filteredDatas.map((row, index) => {
+    return (
+      <tr key={`id-${index}`} className="">
+        {Object.values(row).map((cell, index) => {
+          return (
+            <td key={`cell-${index}`} className="table-cell">
+              {cell.length !== 0 ? cell : '❌'}
+            </td>
+          );
+        })}
+      </tr>
+    );
+  })
+) : (
+  <tr>
+    <td className="table-cell-full">
+      Aucun résultat trouvé
+    </td>
+  </tr>
+)}
+
+          
         </tbody>
       </table>
 

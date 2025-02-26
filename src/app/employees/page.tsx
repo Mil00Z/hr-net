@@ -37,9 +37,16 @@ const EmployeesList = () => {
 
       <h1>Current Employees</h1>
 
-      <DataTable drillingDatas={employeesDatas} /> 
+      <div className="datas-container">
 
-      {!datasAvailable ? (<p>'No data available in store : Mock datas ON'</p>): (<p>Showing 1 of {employeesDatas.length} entries</p>) }
+        <DataTable drillingDatas={employeesDatas} /> 
+
+        {!datasAvailable ? (<p>'No data available in store : Mock datas ON'</p>): (<p>Showing 1 of {employeesDatas.length} entries</p>) }
+
+      </div>
+      
+
+      
 
     </section> 
 
