@@ -7,7 +7,18 @@
     "department": "Sales",
     "id": ":r1:",
     "startDate": "2025-02-18",
-    "street": "Tunes",
+    "street": "square Tunes",
     "zipCode": ""
+  },
+  {
+    "firstName": "Bennob",
+    "lastName": "Aligator",
+    "dateBirth":"1999-05-10",
+    "city": "Paris",
+    "department": "Legal",
+    "id": ":r7:",
+    "startDate": "2024-08-18",
+    "street": "rue Maginot",
+    "zipCode": "33000"
   }
 ]
