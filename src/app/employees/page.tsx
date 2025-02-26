@@ -41,7 +41,7 @@ const EmployeesList = () => {
 
         <DataTable drillingDatas={employeesDatas} /> 
 
-        {!datasAvailable ? (<p>'No data available in store : Mock datas ON'</p>): (<p>Showing 1 of {employeesDatas.length} entries</p>) }
+        {!datasAvailable ? (<p className="p-4 text-red-800 font-semibold text-center text-xl">'Mock datas Only'</p>): (<p className="p-4 text-white font-semibold text-center text-xl">'FormDatas Employees'</p>) }
 
       </div>
       
