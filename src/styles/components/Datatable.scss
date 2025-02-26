@@ -1,6 +1,7 @@
 .datas-container{
   --table-spacing:2rem;
   background:var(--background);
+  color:var(--color-white);
 
     .top{
     display:flex;
@@ -16,7 +17,7 @@
   flex-direction: column;
   min-height:50vh;
   padding:var(--table-spacing);
-  color:var(--color-white);
+  
 }
 
 .searching {
