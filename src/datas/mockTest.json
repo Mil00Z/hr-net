@@ -13,12 +13,100 @@
   {
     "firstName": "Bennob",
     "lastName": "Aligator",
-    "dateBirth":"1999-05-10",
+    "dateBirth": "1999-05-10",
     "city": "Paris",
     "department": "Legal",
     "id": ":r7:",
     "startDate": "2024-08-18",
     "street": "rue Maginot",
     "zipCode": "33000"
+  },
+  {
+    "firstName": "Sophie",
+    "lastName": "Dupont",
+    "dateBirth": "1995-02-12",
+    "city": "Lyon",
+    "department": "Marketing",
+    "id": ":r2:",
+    "startDate": "2023-05-15",
+    "street": "rue de la République",
+    "zipCode": "69000"
+  },
+  {
+    "firstName": "Pierre",
+    "lastName": "Martin",
+    "dateBirth": "1992-08-25",
+    "city": "Marseille",
+    "department": "Sales",
+    "id": ":r3:",
+    "startDate": "2022-10-01",
+    "street": "avenue de la Liberté",
+    "zipCode": "13000"
+  },
+  {
+    "firstName": "Marie",
+    "lastName": "Lefebvre",
+    "dateBirth": "1998-04-20",
+    "city": "Bordeaux",
+    "department": "IT",
+    "id": ":r4:",
+    "startDate": "2021-07-01",
+    "street": "rue de la Gare",
+    "zipCode": "33000"
+  },
+  {
+    "firstName": "Jean",
+    "lastName": "Pierre",
+    "dateBirth": "1996-01-01",
+    "city": "Toulouse",
+    "department": "Finance",
+    "id": ":r5:",
+    "startDate": "2020-04-01",
+    "street": "rue de la République",
+    "zipCode": "31000"
+  },
+  {
+    "firstName": "Sophie",
+    "lastName": "Durand",
+    "dateBirth": "1994-09-15",
+    "city": "Nice",
+    "department": "Marketing",
+    "id": ":r6:",
+    "startDate": "2019-10-01",
+    "street": "avenue de la Victoire",
+    "zipCode": "06000"
+  },
+  {
+    "firstName": "Pierre",
+    "lastName": "Moreau",
+    "dateBirth": "1993-06-10",
+    "city": "Montpellier",
+    "department": "Sales",
+    "id": ":r8:",
+    "startDate": "2018-07-01",
+    "street": "rue de la Gare",
+    "zipCode": "34000"
+  },
+  {
+    "firstName": "Marie",
+    "lastName": "Leroy",
+    "dateBirth": "1997-03-25",
+    "city": "Strasbourg",
+    "department": "IT",
+    "id": ":r9:",
+    "startDate": "2017-04-01",
+    "street": "rue de la République",
+    "zipCode": "67000"
+  },
+  {
+    "firstName": "Jean",
+    "lastName": "Pierre",
+    "dateBirth": "1991-11-01",
+    "city": "Rennes",
+    "department": "Finance",
+    "id": ":r10:",
+    "startDate": "2016-10-01",
+    "street": "avenue de la Liberté",
+    "zipCode": "35000"
   }
 ]
