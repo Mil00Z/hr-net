@@ -1,3 +1,5 @@
+"use client";
+
 import {useState,useEffect} from 'react';
 import {useSelector} from 'react-redux';
 
@@ -13,6 +15,7 @@ const DataTable = ({drillingDatas}) => {
   const initialDatas = employees.length > 0 ? employees : mock;
 
   const [filteredDatas,setFilteredDatas] = useState(initialDatas);
+  const [sortingDatas,setSortingDatas] = useState('asc');
  
 
   //backUp Data to testing 
@@ -40,9 +43,30 @@ const DataTable = ({drillingDatas}) => {
 
     let entry = parseInt(inputValue);
 
-    setFilteredDatas(() => initialDatas.slice(0, entry))
+    setFilteredDatas((filteredDatas) => initialDatas.slice(0, entry));
 
   }
+
+
+  function lexicalFilter(value) {
+    
+    let sortedDatas;
+
+    if (sortingDatas === 'asc') {
+      sortedDatas = [...filteredDatas].sort((a, b) => {
+        return a[value].localeCompare(b[value], 'fr');
+      });
+      setSortingDatas('desc');
+    } else {
+      sortedDatas = [...filteredDatas].sort((a, b) => {
+        return b[value].localeCompare(a[value], 'fr');
+      });
+      setSortingDatas('asc');
+    }
+    setFilteredDatas(sortedDatas);
+  }
+
+
 
   function globalSearch(input){
 
@@ -66,9 +90,10 @@ const DataTable = ({drillingDatas}) => {
     
   }
 
-  useEffect(() => { 
+    useEffect(() => { 
 
-    console.log('datas changing')
+    //Activer un effet de mise à jour et visuel lorsque filteredDatas change ?
+    // console.log('datas changing');
 
   }, [filteredDatas]);
 
@@ -80,9 +105,10 @@ const DataTable = ({drillingDatas}) => {
         <div className="numbering flex flex-row">
 
           <select className="" id="" onChange={(event)=>{entriesByPage(event.target.value)}}>
-              <option defaultValue="">All</option>
+              <option defaultValue="" value={initialDatas.length}>All</option>
               <option value="1">1</option>
               <option value="4">4</option>
+              <option value="6">6</option>
               <option value="8">8</option>
               <option value="10">10</option>
               <option value="25">20</option>
@@ -104,7 +130,7 @@ const DataTable = ({drillingDatas}) => {
           <tr>
 
           {colLabels.map((label,index) => {
-            return (<th key={`label-${index}`} className="table-label">{label}</th>)
+            return (<th key={`label-${index}`} className="table-label" data-head={`${label}`} onClick={()=>{lexicalFilter(label)}}>{label}</th>)
           })}
 
            </tr>
