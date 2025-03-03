@@ -4,6 +4,10 @@ import {useState,useEffect} from 'react';
 import {useSelector,useDispatch} from 'react-redux';
 import {nanoid} from '@reduxjs/toolkit';
 
+
+import ModalSuccess from '../Modal/ModalSuccess';
+
+//Datas
 import states from '@/datas/states.json';
 import departments from '@/datas/departments.json';
 
@@ -16,17 +20,27 @@ const FormCreateEmployees = () => {
 
   const dispatch = useDispatch();
 
+  const [triggerError,setTriggerError] = useState(false);
 
-  const statesAvailables = states.map((state,index) =>{
+  const [formIsOk,setFormIsOk] = useState(false);
+
+
+  const statesAvailables = states.map((state) =>{
     return( <option key={`state-${state.id}`} value={state.abbreviation}>{state.name}</option>)
 
   });
 
-  const departmentsAvailables = departments.map((department,index) =>{
+  const departmentsAvailables = departments.map((department) =>{
 
     return (<option key={`departement-${department.id}`} value={department.name}>{department.name}</option>)
   })
 
+
+  function closeModal() {
+
+    setFormIsOk(false);
+
+  } 
 
 
   function saveEmployee(event) {
@@ -35,28 +49,40 @@ const FormCreateEmployees = () => {
 
     const formDatas = new FormData(event.target);
 
-    const copyDatas = Object.fromEntries(formDatas);
+    //Micro testing One value of input is bad
+    if(formDatas.get('firstName').length < 4) {
 
-    const employeeData = {...copyDatas,id:nanoid()}
+      setTriggerError(true);
 
+    } else {
 
-    //Update Store
-    dispatch(employeesSlice.actions.setEmployees([...quickStore.employees,employeeData]));
+      const copyDatas = Object.fromEntries(formDatas);
+  
+      const employeeData = {...copyDatas,id:nanoid()}
+
+      //Update Store
+      dispatch(employeesSlice.actions.setEmployees([...quickStore.employees,employeeData]));
+
+      setFormIsOk(true);
+
+    }
+
   }
 
    
+
   return(
     <>
     <form action="/" id="create-employee" onSubmit={()=>{saveEmployee(event)}} className="flex flex-col p-4">
 
           <label htmlFor="firstName" className="input-label">First Name</label>
-          <input type="text" id="firstName" name="firstName"/>
+          <input type="text" id="firstName" name="firstName" required/>
 
           <label htmlFor="lastName" className="input-label">Last Name</label>
-          <input type="text" id="lastName" name="lastName"/>
+          <input type="text" id="lastName" name="lastName" required/>
 
           <label htmlFor="dateBirth" className="input-label">Date of Birth</label>
-          <input id="dateBirth" name="dateBirth" type="date"/>
+          <input id="dateBirth" name="dateBirth" type="date" required/>
 
           <label htmlFor="start-date" className="input-label">Start Date</label>
           <input id="startDate" name="startDate" type="date"/>
@@ -72,25 +98,27 @@ const FormCreateEmployees = () => {
             <input id="city" name="city" type="text" />
 
             <label htmlFor="state" className="input-label">State</label>
-            <select name="state" id="state">
+            <select name="state" id="state" required>
                 {statesAvailables}
             </select>
 
             <label htmlFor="zipCode" className="input-label">Zip Code</label>
             <input id="zipCode" name="zipCode	" type="number"/>
                     
-            {/* <input id="zipCode" name="zipCode	" type="text" min="00000" max="99999 "pattern="[0-9]{5}" required /> */}
+            {/* <input id="zipCode" name="zipCode" type="text" maxLength="5" required /> */}
 
             </fieldset>
 
           <label htmlFor="department" className="input-label">Department</label>
-          <select name="department" id="department" name="department">
+          <select name="department" id="department" name="department" required>
                     {departmentsAvailables}
           </select>
 
-
-          <button className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded mt-8" type="submit">Save</button>       
+          {triggerError ? (<p className="text-white font-bold py-2 px-4 border-b-4 bg-red-500 rounded mt-8" type="submit">Unavailable Datas</p>):(<button className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded mt-8" type="submit">Save</button>)}
+               
         </form>
+
+        {formIsOk ? (<ModalSuccess success={formIsOk} closeModal={closeModal} />):(null)}
       </>
 
   )
