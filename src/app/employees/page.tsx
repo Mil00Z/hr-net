@@ -5,6 +5,8 @@ import {useSelector} from 'react-redux';
 
 import Link from 'next/link'
 
+import mock from '@/datas/mockTest';
+
 import DataTable from '@/components/DataTable/Datatable';
 
 // import '@/styles/pages/NotFound.scss'
@@ -31,23 +33,22 @@ const EmployeesList = () => {
     <>
     <section id="employee-div" className="container">
       
-      <div className="headline">
-        Number of Available Employees: {employeesDatas.length}
-      </div>
-
-      <h1>Current Employees</h1>
+      <h1 className="text-lg text-center text-gray-600">List of Current Employees</h1>
 
       <div className="datas-container">
 
         <DataTable drillingDatas={employeesDatas} /> 
 
-        {!datasAvailable ? (<p className="p-4 text-red-800 font-semibold text-center text-xl">'Mock datas Only'</p>): (<p className="p-4 text-white font-semibold text-center text-xl">'FormDatas Employees'</p>) }
+          {!datasAvailable ? (<>
+          <p className="p-4 text-red-600 font-semibold text-center text-lg">'Mock datas Only'</p>
+          <div className="headline">Number of Available Datas: {mock.length}</div>
+        </>) : (<>
+          <p className="p-4 text-green-600 font-semibold text-center text-lg">'FormDatas Employees'</p>
+          <div className="headline">Number of Available Datas: {employeesDatas.length}</div>
+      </>)}
 
       </div>
       
-
-      
-
     </section> 
 
     <Link href="/" className="btn">Home</Link>
