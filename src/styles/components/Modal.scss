@@ -1,0 +1,44 @@
+.modal-success-container{
+  --op:.55;
+  --bg-modal-content:0,0,0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  inset:0 0 0 0;
+  width:100dvw;
+  height:100dvh;
+  background:linear-gradient(to bottom, rgba(var(--bg-modal-content),var(--op)) 0%, rgba(var(--bg-modal-content),var(--op)) 100%);
+  opacity: 0;
+  transition:all .22s ease-in-out;
+  transform:translateY(-100%);
+
+  &.show{
+    animation: fadeIn 0.5s ease-in-out forwards;
+  }
+  
+}
+
+
+  .modal-content{
+    width:80%;
+    padding:2rem;
+    background:var(--white-color);
+
+    &:hover{
+      cursor:pointer;
+    }
+
+  }
+
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+      transform:translateY(-100%);
+    }
+    100% {
+      opacity: 1;
+      transform:translateY(0);
+      
+    }
+  }
