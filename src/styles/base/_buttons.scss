@@ -4,3 +4,13 @@
   color:var(--black-color);
   padding:1rem;
 }
+
+button{
+
+  &:disabled{
+    background:grey;
+    color:var(--white-color);
+    cursor: not-allowed;
+  }
+
+}
