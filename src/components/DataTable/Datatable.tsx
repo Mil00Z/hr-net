@@ -2,6 +2,10 @@
 
 import {useState,useEffect} from 'react';
 import {useSelector} from 'react-redux';
+import {nanoid} from '@reduxjs/toolkit';
+
+
+import Pagination from '@/components/Pagination/Pagination';
 
 import mock from '@/datas/mockTest';
 
@@ -16,11 +20,11 @@ const DataTable = ({drillingDatas}) => {
 
   const [filteredDatas,setFilteredDatas] = useState(initialDatas);
   const [sortingDatas,setSortingDatas] = useState('asc');
+  const [counterPages,setCounterPages] = useState([]);
  
 
   //backUp Data to testing 
   localStorage.setItem('employees', JSON.stringify(employees));
-
 
   //Choisir si on automatise la création des labels avec les intitulés du form initial 
   const colLabels = Object.keys(employees[0] ? employees[0] : mock[0]);
@@ -44,8 +48,31 @@ const DataTable = ({drillingDatas}) => {
     let entry = parseInt(inputValue);
 
     setFilteredDatas((filteredDatas) => initialDatas.slice(0, entry));
+
+    // const links = listOfPages(entry);
+
+    setCounterPages(listOfPages(entry))
     
   }
+
+  function listOfPages(value){
+
+    let numberOfPages = filteredDatas.length / value;
+
+    if(numberOfPages % value > 0){
+
+      numberOfPages = Math.ceil(numberOfPages);
+
+    }
+
+    let links=[];
+    for (let i = 1; i <= numberOfPages; i++) {
+      links.push(i);
+    }
+
+    return links;
+  }
+
 
 
   function lexicalFilter(value) {
@@ -90,6 +117,8 @@ const DataTable = ({drillingDatas}) => {
     
   }
 
+  
+
     useEffect(() => { 
 
       //Activer un effet de mise à jour et visuel lorsque filteredDatas change ?
@@ -107,6 +136,7 @@ const DataTable = ({drillingDatas}) => {
           <select className="text-base text-white" onChange={(event)=>{entriesByPage(event.target.value)}}>
               <option defaultValue="" value={initialDatas.length}>All</option>
               <option value="1">1</option>
+              <option value="2">2</option>
               <option value="4">4</option>
               <option value="6">6</option>
               <option value="8">8</option>
@@ -137,7 +167,7 @@ const DataTable = ({drillingDatas}) => {
 
             {filteredDatas.length > 0 ? (filteredDatas.map((row, index) => {
                   return (
-                    <tr key={`id-row-${index}`} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200">
+                    <tr key={`row-${index}`} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200">
                       
                       {Object.values(row).map((cell, index) => {
                         return (
@@ -148,9 +178,7 @@ const DataTable = ({drillingDatas}) => {
                           </>
                         );
                       })}
-                      
-                    </tr>
-                  );
+                    </tr>);
                 })
               ) : (
                 <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200">
@@ -167,8 +195,12 @@ const DataTable = ({drillingDatas}) => {
 
 
       <div className="bottom my-2">
-        <div className="px-4 my-2 details text-white text-base"> Show <span className="text-lg font-semibold text-red-600">{filteredDatas.length}</span> entries of <span className="text-lg font-bold text-yellow-600">{initialDatas.length}</span></div>
-        <div className="pagination"></div>
+
+        <div className="px-5 my-2 details text-white text-base"> Show <span className="text-lg font-semibold text-red-600">{filteredDatas.length}</span> entries of <span className="text-lg font-bold text-yellow-600">{initialDatas.length}</span></div>
+
+      
+        <Pagination counterPages={counterPages} />
+      
       </div>
 
     </>
