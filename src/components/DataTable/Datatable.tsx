@@ -1,14 +1,13 @@
-"use client";
 
 import {useState,useEffect} from 'react';
 import {useSelector} from 'react-redux';
-import {nanoid} from '@reduxjs/toolkit';
 
 
 import Pagination from '@/components/Pagination/Pagination';
 
 import mock from '@/datas/mockTest';
 
+// Styles
 import '@/styles/components/Datatable.scss';
 
 
@@ -20,7 +19,10 @@ const DataTable = ({drillingDatas}) => {
 
   const [filteredDatas,setFilteredDatas] = useState(initialDatas);
   const [sortingDatas,setSortingDatas] = useState('asc');
+  const [elementsPerPage,setElementsPerPage] = useState(initialDatas.length);
   const [counterPages,setCounterPages] = useState([]);
+
+  const [pageIndex, setPageIndex] = useState(1);
  
 
   //backUp Data to testing 
@@ -42,22 +44,24 @@ const DataTable = ({drillingDatas}) => {
   //   { title: 'Zip Code'}
   // ];
 
-  
+
+
   function entriesByPage(inputValue){
 
     let entry = parseInt(inputValue);
 
-    setFilteredDatas((filteredDatas) => initialDatas.slice(0, entry));
+    // Record number of Element by Pages 
+    setElementsPerPage((elementsPerPage) => entry);
 
-    // const links = listOfPages(entry);
-
-    setCounterPages(listOfPages(entry))
+    //Record Array of Pagination
+    setCounterPages((counterPages) => listOfPages(entry))
     
+  
   }
 
   function listOfPages(value){
 
-    let numberOfPages = filteredDatas.length / value;
+    let numberOfPages = initialDatas.length / value;
 
     if(numberOfPages % value > 0){
 
@@ -72,8 +76,6 @@ const DataTable = ({drillingDatas}) => {
 
     return links;
   }
-
-
 
   function lexicalFilter(value) {
     
@@ -92,8 +94,6 @@ const DataTable = ({drillingDatas}) => {
     }
     setFilteredDatas(sortedDatas);
   }
-
-
 
   function globalSearch(input){
 
@@ -117,14 +117,19 @@ const DataTable = ({drillingDatas}) => {
     
   }
 
-  
 
-    useEffect(() => { 
+  useEffect(() => {
 
-      //Activer un effet de mise à jour et visuel lorsque filteredDatas change ?
-      // console.log('datas changing');
+    //First Step of dispatch Datas by Pages
+    setFilteredDatas((filteredDatas) => {
 
-  }, [filteredDatas]);
+      const sliced = initialDatas.slice((pageIndex - 1) * elementsPerPage, elementsPerPage * pageIndex);
+
+      return sliced;
+    });
+   
+  },[elementsPerPage,pageIndex])
+
 
 
   return(
@@ -143,7 +148,7 @@ const DataTable = ({drillingDatas}) => {
               <option value="10">10</option>
               <option value="25">20</option>
           </select>
-          <label htmlFor="dt-length-0" className="px-4 text-white font-semibold text-base"> entries per page</label>
+          <label htmlFor="dt-length-0" className="px-4 text-white font-semibold text-base"> {filteredDatas.length > 1 ? 'entries' : 'entry'} per page</label>
           
         </div>
 
@@ -199,7 +204,7 @@ const DataTable = ({drillingDatas}) => {
         <div className="px-5 my-2 details text-white text-base"> Show <span className="text-lg font-semibold text-red-600">{filteredDatas.length}</span> entries of <span className="text-lg font-bold text-yellow-600">{initialDatas.length}</span></div>
 
       
-        <Pagination counterPages={counterPages} />
+        <Pagination counterPages={counterPages} pageIndex={pageIndex} setPageIndex={setPageIndex} />
       
       </div>
 
