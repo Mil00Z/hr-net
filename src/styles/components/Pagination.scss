@@ -1,0 +1,23 @@
+.pagination{
+  --gap:.75rem;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  // margin-inline: 2rem;
+  column-gap: var(--gap);
+
+  &-link{
+    --color:rgb(202 138 4);
+    width:60px;
+    // height:auto;
+    padding:2px;
+    display:block;
+    color:var(--black-color);
+    background:var(--white-color);
+    font-size:var(--font-size);
+    font-weight: var(--bold-weight);
+    text-align: center;
+    border:2px solid var(--color);
+    border-radius: var(--radius);
+  }
+}
