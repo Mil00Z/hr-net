@@ -14,15 +14,17 @@
   transform:translateY(-100%);
 
   &.show{
-    animation: fadeIn 0.5s ease-in-out forwards;
+    animation: fadeIn 0.45s ease-in-out forwards;
   }
   
 }
 
 
   .modal-content{
-    width:80%;
+    width:30%;
+    height:20dvh;
     padding:2rem;
+    border-radius: var(--radius);
     background:var(--white-color);
 
     &:hover{

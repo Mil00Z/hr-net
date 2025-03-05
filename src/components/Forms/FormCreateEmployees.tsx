@@ -5,7 +5,7 @@ import {useSelector,useDispatch} from 'react-redux';
 import {nanoid} from '@reduxjs/toolkit';
 
 
-import ModalSuccess from '../Modal/ModalSuccess';
+import Modal from '../Modal/Modal';
 
 //Datas
 import states from '@/datas/states.json';
@@ -23,6 +23,8 @@ const FormCreateEmployees = () => {
   const [triggerError,setTriggerError] = useState(false);
 
   const [formIsOk,setFormIsOk] = useState(false);
+
+  const [incomingData,setIncomingData] = useState('');
 
 
   const statesAvailables = states.map((state) =>{
@@ -64,6 +66,7 @@ const FormCreateEmployees = () => {
       dispatch(employeesSlice.actions.setEmployees([...quickStore.employees,employeeData]));
 
       setFormIsOk(true);
+      setIncomingData(employeeData);
 
     }
 
@@ -118,7 +121,7 @@ const FormCreateEmployees = () => {
                
         </form>
 
-        {formIsOk ? (<ModalSuccess success={formIsOk} closeModal={closeModal} />):(null)}
+        {formIsOk ? (<Modal success={formIsOk} closeModal={closeModal} newUser={incomingData} />):(null)}
       </>
 
   )

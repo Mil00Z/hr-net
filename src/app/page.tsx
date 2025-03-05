@@ -39,11 +39,6 @@ export default function Home() {
 
         </div>
 
-        {/* Message Modal if Form Submit is OK
-        <div id="confirmation" className="modal debeug">
-          Employee Created ! 
-        </div> */}
-
         <Link href="/employees" className="btn">View Current Employees</Link> 
 
     </>
