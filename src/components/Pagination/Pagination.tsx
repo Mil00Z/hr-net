@@ -1,3 +1,4 @@
+import {useState} from 'react';
 import Link from "next/link";
 
 
@@ -6,11 +7,14 @@ import '@/styles/components/Pagination.scss';
 
 const Pagination = ({counterPages,pageIndex,setPageIndex}) =>  {
 
-  function handleClick(event) {
+  const [activePage,setActivePage] = useState(pageIndex);
 
-    let numberPage = parseInt(event.target.textContent);
 
-    setPageIndex((pageIndex) => numberPage);
+
+  function handleClick(pageNumber) {
+
+    setPageIndex((pageIndex) => parseInt(pageNumber));
+   
   }
 
 
@@ -19,7 +23,7 @@ return (
   <div className="pagination px-5" data-counterpages={counterPages.length}>
 
       {counterPages.map((page,index)=>{
-          return (<Link key={`pagination-element-${index}-coucou`} href="#" className="pagination-link" onClick={(event)=>{handleClick(event)}}>{page}</Link>)
+          return (<Link key={`pagination-element-${index}`} href="#" className={`pagination-link dark:bg-gray-800 text-white hover:bg-white hover:text-gray-800 ${pageIndex === page ? 'active' : null}`} onClick={()=>{handleClick(page)}}>{page}</Link>)
       })}
 
   </div>

@@ -8,16 +8,25 @@
 
   &-link{
     --color:rgb(202 138 4);
-    width:60px;
-    // height:auto;
-    padding:2px;
-    display:block;
-    color:var(--black-color);
-    background:var(--white-color);
+    --sizes:30px;
+    --radius:50%;
+    width:var(--sizes);
+    height:var(--sizes);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding:5px;
+    color:var(--color);
+    // background:var(--white-color);
     font-size:var(--font-size);
     font-weight: var(--bold-weight);
     text-align: center;
-    border:2px solid var(--color);
     border-radius: var(--radius);
+    transition:all .25s ease-in-out;
+  }
+
+  .active{
+    background:var(--color);
+    color:var(--white-color);
   }
 }
