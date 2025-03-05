@@ -21,7 +21,6 @@ const DataTable = ({drillingDatas}) => {
   const [sortingDatas,setSortingDatas] = useState('asc');
   const [elementsPerPage,setElementsPerPage] = useState(initialDatas.length);
   const [counterPages,setCounterPages] = useState([]);
-
   const [pageIndex, setPageIndex] = useState(1);
  
 
@@ -112,7 +111,6 @@ const DataTable = ({drillingDatas}) => {
       })
   
       setFilteredDatas(filteredSearch);
-
     }
     
   }
@@ -125,6 +123,9 @@ const DataTable = ({drillingDatas}) => {
 
       const sliced = initialDatas.slice((pageIndex - 1) * elementsPerPage, elementsPerPage * pageIndex);
 
+      
+      console.log(sliced);
+
       return sliced;
     });
    
@@ -135,7 +136,7 @@ const DataTable = ({drillingDatas}) => {
   return(
     <>
       <div className="top">
-
+      
         <div className="numbering flex flex-row">
 
           <select className="text-base text-white" onChange={(event)=>{entriesByPage(event.target.value)}}>
