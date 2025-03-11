@@ -1,32 +1,33 @@
-import {useState} from 'react';
 import Link from "next/link";
-
 
 import '@/styles/components/Pagination.scss';
 
+export interface PaginationProps {
+  counterPages: number[];
+  pageIndex: number;
+  setPageIndex: Function
+}
 
-const Pagination = ({counterPages,pageIndex,setPageIndex}) =>  {
 
-  const [activePage,setActivePage] = useState(pageIndex);
+const Pagination = ({counterPages,pageIndex,setPageIndex}:PaginationProps) =>  {
 
+  
+  function handleClick(pageNumber:number) {
 
-
-  function handleClick(pageNumber) {
-
-    setPageIndex((pageIndex) => parseInt(pageNumber));
+    setPageIndex(pageNumber);
    
   }
 
 
 return (
   <>
-  <div className="pagination px-5" data-counterpages={counterPages.length}>
+    <div className="my-2 flex items-center gap-x-4" data-counterpages={counterPages.length}>
 
       {counterPages.map((page,index)=>{
-          return (<Link key={`pagination-element-${index}`} href="#" className={`pagination-link dark:bg-gray-800 text-white hover:bg-white hover:text-gray-800 ${pageIndex === page ? 'active' : null}`} onClick={()=>{handleClick(page)}}>{page}</Link>)
+          return (<Link key={`pagination-element-${index}`} href="#" className={`pagination-link dark:bg-gray-800 text-white hover:bg-white hover:text-gray-800 ${pageIndex === page ? 'active' : ''}`} onClick={()=>{handleClick(page)}}>{page}</Link>)
       })}
 
-  </div>
+    </div>
   </>
   
   )
