@@ -1,8 +1,5 @@
 'use client';
 
-import {useContext} from 'react';
-import { DataContext } from './contextProvider';
-
 import Image from "next/image";
 import Link from "next/link";
 
@@ -10,8 +7,6 @@ import Link from "next/link";
 import FormCreateEmployees from '@/components/Forms/FormCreateEmployees';
 
 export default function Home() {
-
-  const contexte = useContext(DataContext);
 
   return (
 
@@ -33,7 +28,7 @@ export default function Home() {
 
         <div className="container">
 
-          <h2>Create Employee</h2>
+          <h2 className="p-2 m-2 text-xl text-center text-gray-600">Create Employee</h2>
 
           <FormCreateEmployees />
 
