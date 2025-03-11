@@ -19,11 +19,11 @@ const FormCreateEmployees = () => {
 
   const dispatch = useDispatch();
 
-  const [triggerError,setTriggerError] = useState(false);
+  const [triggerError,setTriggerError] = useState<boolean>(false);
 
-  const [formIsOk,setFormIsOk] = useState(false);
+  const [formIsOk,setFormIsOk] = useState<boolean>(false);
 
-  const [incomingData,setIncomingData] = useState('');
+  const [incomingData,setIncomingData] = useState<object>('');
 
 
   const statesAvailables = states.map((state) =>{
