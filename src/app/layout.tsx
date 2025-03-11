@@ -1,5 +1,3 @@
-
-
 import AppProvider from "./contextProvider";
 
 import type { Metadata } from "next";
