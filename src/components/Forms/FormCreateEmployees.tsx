@@ -1,9 +1,8 @@
 "use client";
 
-import {useState,useEffect} from 'react'; 
+import {useState} from 'react'; 
 import {useSelector,useDispatch} from 'react-redux';
 import {nanoid} from '@reduxjs/toolkit';
-
 
 import Modal from '../Modal/Modal';
 
@@ -68,6 +67,8 @@ const FormCreateEmployees = () => {
       setFormIsOk(true);
       setIncomingData(employeeData);
 
+      event.target.reset();
+
     }
 
   }
@@ -122,6 +123,7 @@ const FormCreateEmployees = () => {
         </form>
 
         {formIsOk ? (<Modal success={formIsOk} closeModal={closeModal} newUser={incomingData} />):(null)}
+        
       </>
 
   )
