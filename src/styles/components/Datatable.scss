@@ -25,10 +25,20 @@
 }
 
 thead{
-  th{
-    cursor:pointer
-  }
+
+  th,
+  &.heading{
+    cursor:pointer;
+      
+      .order-icon{
+        margin-inline: .85rem;
+        font-size:.95rem;
+        color:var(--white-color);
+      }
+   }
+
 }
+
 
 .table{
 

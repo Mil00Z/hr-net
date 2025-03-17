@@ -160,7 +160,8 @@ const DataTable = ({initialDatas} : DataTableProps) => {
           <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
               <tr >
                 {colLabels.map((label,index) => {
-                return (<th key={`label-${index}`} className="px-3 py-3 text-yellow-600 text-lg" data-head={`${label}`} onClick={()=>{lexicalFilter(label)}} scope="col">{label}</th>)
+                return (<th key={`label-${index}`} className="heading px-3 py-3 text-yellow-600 text-lg" data-head={`${label}`} onClick={()=>{lexicalFilter(label)}} scope="col">{label}<span className="order-icon">{sortingDatas === 'desc' ? '▲' : '▼'}</span>
+                </th>)
               })}
               </tr>
           </thead>
