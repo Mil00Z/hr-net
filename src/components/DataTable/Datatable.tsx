@@ -198,7 +198,7 @@ const DataTable = ({initialDatas} : DataTableProps) => {
 
       <div className="bottom px-2 my-2 flex justify-between items-center">
 
-        <div className="details my-2 text-white text-base"> Show <span className="text-lg font-semibold text-red-600">{searchedDatas.length}</span> entries of <span className="text-lg font-bold text-yellow-600">{defaultDatas.length}</span></div>
+        <div className="details my-2 text-white text-md"> Show <span className="text-lg font-semibold text-red-600">{searchedDatas.length}</span> entries of <span className="text-lg font-bold text-yellow-600">{defaultDatas.length}</span></div>
         
 
         <Pagination counterPages={counterPages} pageIndex={pageIndex} setPageIndex={setPageIndex} />

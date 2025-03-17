@@ -30,7 +30,7 @@ const EmployeesList = () => {
     <>
     <section id="employee-div" className="container">
       
-      <h1 className="p-2 m-2 text-xl text-center text-gray-600">List of Current Employees</h1>
+      <h1 className="p-2 m-2 text-3xl text-center text-black-900 ">List of Current Employees</h1>
 
       <div className="p-2 m-2 datas-container">
 
