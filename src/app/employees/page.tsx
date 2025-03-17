@@ -46,8 +46,12 @@ const EmployeesList = () => {
       
     </section> 
 
-    <Link href="/" className="btn">Home</Link>
+      <Link href="/" className="btn">Home</Link>
+
+    
     </>
+
+   
 
     )
   }
