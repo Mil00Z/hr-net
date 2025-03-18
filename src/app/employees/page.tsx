@@ -39,7 +39,7 @@ const EmployeesList = () => {
 
         <DataTable drillingDatas={employeesDatas} /> 
 
-        <div classname="datas-source my-2">
+        <div className="datas-source my-2">
           Source of datas :
             {!datasAvailable ? (<>
             <p className="text-orange-900 font-semibold text-medium">'Mock Datas'</p>
