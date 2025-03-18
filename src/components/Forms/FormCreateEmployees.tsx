@@ -19,7 +19,7 @@ const FormCreateEmployees = () => {
 
   const dispatch = useDispatch();
 
-  const [triggerError,setTriggerError] = useState<boolean>(false);
+  const [triggerError,setTriggerError] = useState<boolean>(undefined);
 
   const [formIsOk,setFormIsOk] = useState<boolean>(false);
 
@@ -40,6 +40,7 @@ const FormCreateEmployees = () => {
   function closeModal() {
 
     setFormIsOk(false);
+    setTriggerError(undefined);
 
   } 
 
@@ -50,8 +51,10 @@ const FormCreateEmployees = () => {
 
     const formDatas = new FormData(event.target);
 
+    console.log(formDatas);
+
     //Micro testing One value of input is bad
-    if(formDatas.get('firstName').length < 4) {
+    if(formDatas.get('zipCode').length === 0) {
 
       setTriggerError(true);
 
@@ -65,6 +68,8 @@ const FormCreateEmployees = () => {
       dispatch(employeesSlice.actions.setEmployees([...quickStore.employees,employeeData]));
 
       setFormIsOk(true);
+      setTriggerError(false);
+
       setIncomingData(employeeData);
 
       event.target.reset();
@@ -80,10 +85,10 @@ const FormCreateEmployees = () => {
     <form action="/" id="create-employee" onSubmit={()=>{saveEmployee(event)}} className="flex flex-col p-4">
 
           <label htmlFor="firstName" className="input-label">First Name</label>
-          <input type="text" id="firstName" name="firstName" required/>
+          <input type="text" id="firstName" name="firstName" minLength={2} required/>
 
           <label htmlFor="lastName" className="input-label">Last Name</label>
-          <input type="text" id="lastName" name="lastName" required/>
+          <input type="text" id="lastName" name="lastName" minLength={2} required/>
 
           <label htmlFor="dateBirth" className="input-label">Date of Birth</label>
           <input id="dateBirth" name="dateBirth" type="date" required/>
@@ -107,9 +112,8 @@ const FormCreateEmployees = () => {
             </select>
 
             <label htmlFor="zipCode" className="input-label">Zip Code</label>
-            <input id="zipCode" name="zipCode	" type="number"/>
-                    
-            {/* <input id="zipCode" name="zipCode" type="text" maxLength="5" required /> */}
+            {/* <input id="zipCode" name="zipCode	" type="number" min={00000} max={99999}/> */}
+            <input id="zipCode" name="zipCode" type="text" minLength="5" maxLength="5" pattern="[0-9]*" required/>
 
             </fieldset>
 
@@ -118,8 +122,20 @@ const FormCreateEmployees = () => {
                     {departmentsAvailables}
           </select>
 
-          {triggerError ? (<p className="text-white font-bold py-2 px-4 border-b-4 bg-red-500 rounded mt-8" type="submit">Unavailable Datas</p>):(<button className="bg-orange-600 hover:bg-orange-400 text-white font-bold py-2 px-4 border-b-4 border-orange-700 hover:border-orange-500 rounded mt-8" type="submit">Save</button>)}
-               
+
+          <button className="bg-orange-600 hover:bg-orange-400 text-white font-bold py-2 px-4 border-b-4 border-orange-700 hover:border-orange-500 rounded mt-8" type="submit">Save</button>
+
+          {triggerError !== undefined && (
+  triggerError ? (
+    <p className="text-white font-bold py-2 px-4 border-b-4 bg-red-500 rounded mt-8" type="submit">
+      Unavailable Datas
+    </p>
+  ) : (
+    <p className="text-white font-bold py-2 px-4 border-b-4 bg-green-500 rounded mt-8">
+      List Updated !
+    </p>
+  )
+)}
         </form>
 
         {formIsOk ? (<Modal success={formIsOk} closeModal={closeModal} newUser={incomingData} />):(null)}
