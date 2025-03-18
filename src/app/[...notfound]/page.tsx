@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 
-// import '@/styles/pages/NotFound.scss'
+import '@/styles/pages/NotFound.scss'
 
 const PageNotFound = () => {
 

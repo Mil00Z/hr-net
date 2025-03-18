@@ -118,7 +118,7 @@ const FormCreateEmployees = () => {
                     {departmentsAvailables}
           </select>
 
-          {triggerError ? (<p className="text-white font-bold py-2 px-4 border-b-4 bg-red-500 rounded mt-8" type="submit">Unavailable Datas</p>):(<button className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded mt-8" type="submit">Save</button>)}
+          {triggerError ? (<p className="text-white font-bold py-2 px-4 border-b-4 bg-red-500 rounded mt-8" type="submit">Unavailable Datas</p>):(<button className="bg-orange-600 hover:bg-orange-400 text-white font-bold py-2 px-4 border-b-4 border-orange-700 hover:border-orange-500 rounded mt-8" type="submit">Save</button>)}
                
         </form>
 

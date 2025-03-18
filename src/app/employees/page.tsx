@@ -5,6 +5,8 @@ import {useSelector} from 'react-redux';
 
 import Link from 'next/link'
 
+import Header from '@/components/Header/Header';
+import Footer from '@/components/Footer/Footer';
 import DataTable from '@/components/DataTable/Datatable';
 
 
@@ -28,7 +30,8 @@ const EmployeesList = () => {
 
   return (
     <>
-    <section id="employee-div" className="container">
+
+    <section id="employee-div" className="container employees">
       
       <h1 className="p-2 m-2 text-3xl text-center text-black-900 ">List of Current Employees</h1>
 
@@ -36,22 +39,22 @@ const EmployeesList = () => {
 
         <DataTable drillingDatas={employeesDatas} /> 
 
-          {!datasAvailable ? (<>
-          <p className="p-4 text-red-600 font-semibold text-center text-lg">'Mock datas Only'</p>
-        </>) : (<>
-          <p className="p-4 text-green-600 font-semibold text-center text-lg">'FormDatas Employees'</p>
-      </>)}
-
+        <div classname="datas-source my-2">
+          Source of datas :
+            {!datasAvailable ? (<>
+            <p className="text-orange-900 font-semibold text-medium">'Mock Datas'</p>
+          </>) : (<>
+            <p className="text-green-900 font-semibold text-medium">'FormDatas Employees'</p>
+        </>)}
+        </div>
+            
       </div>
       
     </section> 
 
-      <Link href="/" className="btn">Home</Link>
+    <Link href="/" className="btn">Home</Link>
 
-    
     </>
-
-   
 
     )
   }

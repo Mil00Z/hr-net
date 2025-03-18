@@ -31,14 +31,11 @@ const DataTable = ({initialDatas} : DataTableProps) => {
   const [pageIndex, setPageIndex] = useState<number>(1);
  
 
-  //backUp Data to testing 
-  // localStorage.setItem('employees', JSON.stringify(employees));
 
   //Choisir si on automatise la création des labels avec les intitulés du form initial 
   const colLabels = Object.keys(employees[0] ? employees[0] : mock[0]);
 
  
-
   function entriesByPage(inputValue:string){
 
     let entry = parseInt(inputValue);
@@ -128,10 +125,9 @@ const DataTable = ({initialDatas} : DataTableProps) => {
   },[elementsPerPage,pageIndex,searchedDatas]);
 
 
-
   return(
     <>
-      <div className="top flex items-center py-2 my-4">
+      <div className="top flex items-center py-2">
         
         <div className="numbering flex flex-row items-center">
 
@@ -145,12 +141,12 @@ const DataTable = ({initialDatas} : DataTableProps) => {
               <option value="10">10</option>
               <option value="25">20</option>
           </select>
-          <label htmlFor="dt-length-0" className="px-4 text-white font-semibold text-base"> {searchedDatas.length > 1 ? 'entries' : 'entry'} per page</label>
+          <label htmlFor="dt-length-0" className="px-4 text-black-900 text-base"> {searchedDatas.length > 1 ? 'entries' : 'entry'} per page</label>
         
         </div>
 
         <div className="searching flex flex-row items-center ml-auto">
-          <label htmlFor="search" className="px-2 mx-2 font-semibold text-white text-base">Search:</label>
+          <label htmlFor="search" className="px-2 mx-2 text-black-900 text-base">Search</label>
           <input type="search" id="search" className="p-2 bg-gray-800 text-base text-white" placeholder="votre recherche" onChange={(event)=>{globalSearch(event.target.value)}} />
         </div>
         
@@ -198,7 +194,7 @@ const DataTable = ({initialDatas} : DataTableProps) => {
 
       <div className="bottom px-2 my-2 flex justify-between items-center">
 
-        <div className="details my-2 text-white text-md"> Show <span className="text-lg font-semibold text-red-600">{searchedDatas.length}</span> entries of <span className="text-lg font-bold text-yellow-600">{defaultDatas.length}</span></div>
+        <div className="details my-2 text-black-900 text-md"> Show <span className="text-lg font-semibold text-red-600">{searchedDatas.length}</span> entries of <span className="text-lg font-bold text-yellow-600">{defaultDatas.length}</span></div>
         
 
         <Pagination counterPages={counterPages} pageIndex={pageIndex} setPageIndex={setPageIndex} />

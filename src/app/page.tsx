@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
-
+import Header from "@/components/Header/Header";
 import FormCreateEmployees from '@/components/Forms/FormCreateEmployees';
 
 export default function Home() {
@@ -11,31 +11,16 @@ export default function Home() {
   return (
 
     <>
-        <div className="title">
-            <Link href="/">
-                <Image
-                    className="dark:invert"
-                    src="/next.svg"
-                    alt="Next.js logo"
-                    width={180}
-                    height={38}
-                    priority
-                />
-                <h1>HRnet</h1>
-            </Link>
-        </div>
+        
+      <div className="container home">
 
+        <h2 className="p-2 m-2 text-3xl text-center text-black-900">Create Employee</h2>
 
-        <div className="container">
+        <FormCreateEmployees />
 
-          <h2 className="p-2 m-2 text-xl text-center text-gray-600">Create Employee</h2>
+      </div>
 
-          <FormCreateEmployees />
-
-        </div>
-
-        <Link href="/employees" className="btn">View Current Employees</Link> 
-
+      <Link href="/employees" className="btn">Check Employees List</Link> 
     </>
 
   );
