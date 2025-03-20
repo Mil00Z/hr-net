@@ -10,7 +10,6 @@
 }
 
 .data-table{
-  
   display:flex;
   flex-direction: column;
   min-height:50vh;
@@ -25,8 +24,13 @@
 thead{
 
   th,
-  &.heading{
+  & .heading{
     cursor:pointer;
+
+    @media all and (max-width:1200px){
+          padding-inline:0.2rem;
+          font-size: .8rem;
+    }
       
       .order-icon{
         margin-inline: .85rem;

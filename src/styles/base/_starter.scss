@@ -29,16 +29,17 @@ body {
 .container{
   
   background:var(--foreground);
-  padding:2rem;
+  padding:1rem;
   color:var(--black-color);
   max-width: var(--width);
+  border-radius: var(--radius);
 
   &.home{
-    --width:45%;
+    --width:50%;
   }
 
   &.employees{
-    --width:fit-content;
+    --width:100%;
   }
 }
 
