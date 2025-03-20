@@ -5,31 +5,22 @@ import {useSelector} from 'react-redux';
 
 import Link from 'next/link'
 
-import Header from '@/components/Header/Header';
-import Footer from '@/components/Footer/Footer';
+import mock from '@/datas/mockTest';
+
 import DataTable from '@/components/DataTable/Datatable';
 
 
 const EmployeesList = () => {
 
-  const employeesDatas = useSelector((state) => state.user.employees)
+  const employeesDatas = useSelector((state) => state.user.employees);
 
-  const [datasAvailable,setdatasAvailable] = useState<boolean>(null);
+  const datasStoreAvailable = employeesDatas.length > 0 ;
 
-
-  useEffect(() => { 
-
-    if(employeesDatas.length > 0){
-
-      setdatasAvailable(true);
-
-    }
-
-  }, [employeesDatas]);
+  const incomingDatas = datasStoreAvailable ? employeesDatas : mock;
 
 
   return (
-    <>
+  <>
 
     <section id="employee-div" className="container employees">
       
@@ -37,15 +28,16 @@ const EmployeesList = () => {
 
       <div className="p-2 m-2 datas-container">
 
-        <DataTable drillingDatas={employeesDatas} /> 
+        <DataTable initialDatas={incomingDatas} /> 
 
         <div className="datas-source my-2">
-          Source of datas :
-            {!datasAvailable ? (<>
-            <p className="text-orange-900 font-semibold text-medium">'Mock Datas'</p>
-          </>) : (<>
-            <p className="text-green-900 font-semibold text-medium">'FormDatas Employees'</p>
-        </>)}
+        Source of datas : 
+          {!datasStoreAvailable ? (<>
+              <p className="text-orange-900 font-semibold text-medium">'Mock Datas'</p>
+            </>) : (<>
+              <p className="text-green-900 font-semibold text-medium">'FormDatas Employees'</p>
+          </>)
+          }
         </div>
             
       </div>
@@ -54,9 +46,9 @@ const EmployeesList = () => {
 
     <Link href="/" className="btn">Home</Link>
 
-    </>
+  </>
 
-    )
-  }
+  )
+}
 
 export default EmployeesList

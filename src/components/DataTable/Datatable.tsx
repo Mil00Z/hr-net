@@ -13,27 +13,22 @@ import '@/styles/components/Datatable.scss';
 
 export interface DataTableProps {
   initialDatas: object[];
+
 }
 
 
 const DataTable = ({initialDatas} : DataTableProps) => {
 
-  const employees = useSelector((state) => state.user.employees);
-
-  let defaultDatas = employees.length > 0 ? employees : mock;
-
-
-  const [searchedDatas,setSearchedDatas] = useState<object[]>(defaultDatas);
+  const [searchedDatas,setSearchedDatas] = useState<object[]>(initialDatas);
   const [filteredDatas,setFilteredDatas] = useState<object[]>([]);
   const [sortingDatas,setSortingDatas] = useState<string>('asc');
-  const [elementsPerPage,setElementsPerPage] = useState<number>(defaultDatas.length);
+  const [elementsPerPage,setElementsPerPage] = useState<number>(initialDatas.length);
   const [counterPages,setCounterPages] = useState<number[]>([]);
   const [pageIndex, setPageIndex] = useState<number>(1);
  
 
-
   //Choisir si on automatise la création des labels avec les intitulés du form initial 
-  const colLabels = Object.keys(employees[0] ? employees[0] : mock[0]);
+  const colLabels = Object.keys(initialDatas[0] ? initialDatas[0] : mock[0]);
 
  
   function entriesByPage(inputValue:string){
@@ -68,10 +63,11 @@ const DataTable = ({initialDatas} : DataTableProps) => {
   }
 
 
-  // Filter by Lexical Order*
+  // Filter by Lexical Order
   interface OrderDatas {
     [key: string] : string,
   }
+
 
   function lexicalFilter(value:string) {
     
@@ -96,7 +92,7 @@ const DataTable = ({initialDatas} : DataTableProps) => {
 
     if(searchedDatas.length === 0 || input === ''){
 
-      setSearchedDatas(defaultDatas);
+      setSearchedDatas(initialDatas);
 
     } else {
 
@@ -132,7 +128,7 @@ const DataTable = ({initialDatas} : DataTableProps) => {
         <div className="numbering flex flex-row items-center">
 
           <select className="p-2 bg-gray-800 text-base text-white" onChange={(event)=>{entriesByPage(event.target.value)}} name="dt-length">
-              <option defaultValue="" value={defaultDatas.length}>All</option>
+              <option defaultValue="" value={initialDatas.length}>All</option>
               <option value="1">1</option>
               <option value="2">2</option>
               <option value="4">4</option>
@@ -152,28 +148,26 @@ const DataTable = ({initialDatas} : DataTableProps) => {
         
       </div>
       
-      <table id="employee-table" className="table-auto w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 border-gray-800">
+      <table id="employee-table" className="table-fixed w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 border-gray-800">
           <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
               <tr >
                 {colLabels.map((label,index) => {
-                return (<th key={`label-${index}`} className="heading px-3 py-3 text-yellow-600 text-lg" data-head={`${label}`} onClick={()=>{lexicalFilter(label)}} scope="col">{label}<span className="order-icon">{sortingDatas === 'desc' ? '▲' : '▼'}</span>
+                return (<th key={`label-${index}`} className="heading px-2 py-2 text-yellow-600 text-base" data-head={`${label}`} onClick={()=>{lexicalFilter(label)}} scope="col">{label}<span className="order-icon">{sortingDatas === 'desc' ? '▲' : '▼'}</span>
                 </th>)
               })}
               </tr>
           </thead>
           <tbody>
 
-            {defaultDatas.length > 0 ? (filteredDatas.map((row, index) => {
+            {initialDatas.length > 0 ? (filteredDatas.map((row, index) => {
                   return (
                     <tr key={`row-${index}`} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200">
                       
                       {Object.values(row).map((cell, index) => {
                         return (
-                          <>
                             <td key={`cell-${index}`} className="px-3 py-4 text-base">
                             {cell.length !== 0 ? cell : '❌'}
                             </td>
-                          </>
                         );
                       })}
                     </tr>);
@@ -194,10 +188,11 @@ const DataTable = ({initialDatas} : DataTableProps) => {
 
       <div className="bottom px-2 my-2 flex justify-between items-center">
 
-        <div className="details my-2 text-black-900 text-md"> Show <span className="text-lg font-semibold text-red-600">{searchedDatas.length}</span> entries of <span className="text-lg font-bold text-yellow-600">{defaultDatas.length}</span></div>
+        <div className="details my-2 text-black-900 text-md"> Show <span className="text-lg font-semibold text-yellow-600">{searchedDatas.length}</span> entries of <span className="text-lg font-bold text-red-600">{initialDatas.length}</span></div>
         
 
         <Pagination counterPages={counterPages} pageIndex={pageIndex} setPageIndex={setPageIndex} />
+
       </div>
 
     </>
