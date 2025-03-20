@@ -1,9 +1,9 @@
 'use client';
 
-import Image from "next/image";
 import Link from "next/link";
 
-import Header from "@/components/Header/Header";
+
+
 import FormCreateEmployees from '@/components/Forms/FormCreateEmployees';
 
 export default function Home() {
@@ -11,6 +11,7 @@ export default function Home() {
   return (
 
     <>
+
         
       <div className="container home">
 
@@ -21,6 +22,8 @@ export default function Home() {
       </div>
 
       <Link href="/employees" className="btn">Check Employees List</Link> 
+
+    
     </>
 
   );
