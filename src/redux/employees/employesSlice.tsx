@@ -13,6 +13,7 @@ type Employee = {
   id?: string;
 }
 
+
 const initialState = {
   employees: [] as Employee[],
 };
@@ -22,7 +23,7 @@ export const employeesSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
-    setEmployees: (state, action: PayloadAction<Employee[]>) => {
+    setEmployees: (state : typeof initialState, action: PayloadAction<Employee[]>) => {
       return {...state, employees: action.payload};
     },
   },

@@ -1,18 +1,18 @@
 "use client";
 
-import {useState,useEffect} from 'react';
 import {useSelector} from 'react-redux';
+import { RootState } from '@/redux/store';
 
-import Link from 'next/link'
+import Link from 'next/link';
 
-import mock from '@/datas/mockTest';
+import mock from '@/datas/mockEmployees.json';
 
 import DataTable from '@/components/DataTable/Datatable';
 
 
 const EmployeesList = () => {
 
-  const employeesDatas = useSelector((state) => state.user.employees);
+  const employeesDatas = useSelector((state:RootState) => state.user.employees);
 
   const datasStoreAvailable = employeesDatas.length > 0 ;
 

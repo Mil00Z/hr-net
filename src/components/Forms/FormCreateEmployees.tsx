@@ -4,18 +4,20 @@ import {useState} from 'react';
 import {useSelector,useDispatch} from 'react-redux';
 import {nanoid} from '@reduxjs/toolkit';
 
+import { RootState } from '@/redux/store';
+import { employeesSlice } from '@/redux/employees/employesSlice';
+
+
 import Modal from '../Modal/Modal';
 
 //Datas
 import states from '@/datas/states.json';
 import departments from '@/datas/departments.json';
 
-import { employeesSlice } from '@/redux/employees/employesSlice';
-
 
 const FormCreateEmployees = () => {
 
-  const quickStore = useSelector((state) => state.user);
+  const quickStore = useSelector((state:RootState) => state.user);
 
   const dispatch = useDispatch();
 
@@ -23,7 +25,7 @@ const FormCreateEmployees = () => {
 
   const [formIsOk,setFormIsOk] = useState<boolean>(false);
 
-  const [incomingData,setIncomingData] = useState<object>('');
+  const [incomingDataForm,setIncomingDataForm] = useState<object>('');
 
 
   const statesAvailables = states.map((state) =>{
@@ -54,7 +56,7 @@ const FormCreateEmployees = () => {
     console.log(formDatas);
 
     //Micro testing One value of input is bad
-    if(formDatas.get('zipCode').length === 0) {
+    if(!formDatas.get('zipCode')) {
 
       setTriggerError(true);
 
@@ -70,7 +72,7 @@ const FormCreateEmployees = () => {
       setFormIsOk(true);
       setTriggerError(false);
 
-      setIncomingData(employeeData);
+      setIncomingDataForm(employeeData);
 
       event.target.reset();
 
@@ -118,7 +120,7 @@ const FormCreateEmployees = () => {
             </fieldset>
 
           <label htmlFor="department" className="input-label">Department</label>
-          <select name="department" id="department" name="department" required>
+          <select id="department" name="department" required>
                     {departmentsAvailables}
           </select>
 
@@ -138,7 +140,7 @@ const FormCreateEmployees = () => {
 )}
         </form>
 
-        {formIsOk ? (<Modal success={formIsOk} closeModal={closeModal} newUser={incomingData} />):(null)}
+        {formIsOk ? (<Modal success={formIsOk} closeModal={closeModal} newUser={incomingDataForm} />):(null)}
         
       </>
 
