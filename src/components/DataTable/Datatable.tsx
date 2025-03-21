@@ -1,23 +1,20 @@
 'use client';
 
 import {useState,useEffect} from 'react';
-import {useSelector} from 'react-redux';
-
 
 import Pagination from '@/components/Pagination/Pagination';
 
-import mock from '@/datas/mockTest';
 
 // Styles
 import '@/styles/components/Datatable.scss';
 
 export interface DataTableProps {
   initialDatas: object[];
-
 }
 
 
 const DataTable = ({initialDatas} : DataTableProps) => {
+
 
   const [searchedDatas,setSearchedDatas] = useState<object[]>(initialDatas);
   const [filteredDatas,setFilteredDatas] = useState<object[]>([]);
@@ -27,10 +24,12 @@ const DataTable = ({initialDatas} : DataTableProps) => {
   const [pageIndex, setPageIndex] = useState<number>(1);
  
 
-  //Choisir si on automatise la création des labels avec les intitulés du form initial 
-  const colLabels = Object.keys(initialDatas[0] ? initialDatas[0] : mock[0]);
 
  
+  //Create Labels quickly with the keys of Data Object 
+  const colLabels = Object.keys(initialDatas[0]);
+
+  //Set Local State Number of Element by Page && Pagination Array
   function entriesByPage(inputValue:string){
 
     let entry = parseInt(inputValue);
@@ -41,9 +40,9 @@ const DataTable = ({initialDatas} : DataTableProps) => {
     //Record Array of Pagination
     setCounterPages(listOfPages(entry))
     
-
   }
 
+  //Calculate number of pages needed for Pagination
   function listOfPages(value:number){
 
     let numberOfPages = searchedDatas.length / value;
@@ -54,6 +53,7 @@ const DataTable = ({initialDatas} : DataTableProps) => {
 
     }
 
+    //Set Array of Pagination
     let links=[];
     for (let i = 1; i <= numberOfPages; i++) {
       links.push(i);
@@ -63,11 +63,10 @@ const DataTable = ({initialDatas} : DataTableProps) => {
   }
 
 
-  // Filter by Lexical Order
+  // Filter String value by Lexical Order
   interface OrderDatas {
     [key: string] : string,
   }
-
 
   function lexicalFilter(value:string) {
     
@@ -87,7 +86,7 @@ const DataTable = ({initialDatas} : DataTableProps) => {
     setSearchedDatas(sortedDatas);
   }
 
-
+// Global Search Input Feature
   function globalSearch(input:string){
 
     if(searchedDatas.length === 0 || input === ''){
@@ -96,8 +95,7 @@ const DataTable = ({initialDatas} : DataTableProps) => {
 
     } else {
 
-      const globalSearchedDatas = searchedDatas.filter((row) => {
-  
+      const globalSearchedDatas = searchedDatas.filter((row) => { 
         return Object.values(row).some((value) =>{
           return value.toLowerCase().includes(input.toLowerCase());
         })
