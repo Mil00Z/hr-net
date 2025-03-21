@@ -14,7 +14,6 @@ L'application utilise [Next.js](https://nextjs.org), Redux, Tailwind.
 L'un d'entre eux, Modal, a été reconstruit en tant que plugin, publié sur NPM.
 
 ## Dépendances
-
 * Next
 * React
 * React DOM
@@ -22,7 +21,6 @@ L'un d'entre eux, Modal, a été reconstruit en tant que plugin, publié sur NPM
 
 
 ## Dev-Dépendances
-
 * React
 * React DOM
 * Redux ToolKit
@@ -32,7 +30,6 @@ L'un d'entre eux, Modal, a été reconstruit en tant que plugin, publié sur NPM
 
 
 ## Installation
-
 1. Cloner le dépôt Git
 ```bash
 git clone https://github.com/Mil00Z/hr-net.git
@@ -59,8 +56,8 @@ pnpm dev
 # or
 bun dev
 ```
-## Utilisation
 
+## Utilisation
 * Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 * Remplir le formulaire et soumettre 
 OR
@@ -68,7 +65,6 @@ se rendre sur la page de listing des employées (`http://localhost:3000/employee
 
 
 ## Structure du projet
-
 * `src/`: dossier contenant les fichiers sources de l'application.
 * `src/app/`: dossier de routage des pages du projet, standard en Next.js.
 * `src/components/`: dossier contenant les composants de l'application.
