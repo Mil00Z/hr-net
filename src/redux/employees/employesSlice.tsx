@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-type Employee = {
+export type Employee = {
   firstName: string;
   lastName: string;
   startDate: string;
