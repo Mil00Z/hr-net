@@ -6,9 +6,11 @@ import {nanoid} from '@reduxjs/toolkit';
 
 import { RootState } from '@/redux/store';
 import { employeesSlice } from '@/redux/employees/employesSlice';
+import {Employee} from '@/redux/employees/employesSlice'; 
 
 
 import Modal from '../Modal/Modal';
+
 
 //Datas
 import states from '@/datas/states.json';
@@ -21,11 +23,11 @@ const FormCreateEmployees = () => {
 
   const dispatch = useDispatch();
 
-  const [triggerError,setTriggerError] = useState<boolean>(undefined);
+  const [triggerError,setTriggerError] = useState<boolean | undefined>(undefined);
 
   const [formIsOk,setFormIsOk] = useState<boolean>(false);
 
-  const [incomingDataForm,setIncomingDataForm] = useState<object>('');
+  const [incomingDataForm,setIncomingDataForm] = useState<Employee | null>(null);
 
 
   const statesAvailables = states.map((state) =>{
@@ -47,13 +49,13 @@ const FormCreateEmployees = () => {
   } 
 
 
-  function saveEmployee(event) {
+  function saveEmployee(event: React.FormEvent<HTMLFormElement>) {
     
     event.preventDefault();
 
-    const formDatas = new FormData(event.target);
+    const formDatas = new FormData(event.target as HTMLFormElement);
 
-    console.log(formDatas);
+    // console.log(formDatas);
 
     //Micro testing One value of input is bad
     if(!formDatas.get('zipCode')) {
@@ -64,17 +66,16 @@ const FormCreateEmployees = () => {
 
       const copyDatas = Object.fromEntries(formDatas);
   
-      const employeeData = {...copyDatas,id:nanoid()}
+      const employeeData = {...copyDatas,id:nanoid()} as Employee;
 
       //Update Store
-      dispatch(employeesSlice.actions.setEmployees([...quickStore.employees,employeeData]));
+      dispatch(employeesSlice.actions.setEmployees([...quickStore.employees, employeeData]));
 
       setFormIsOk(true);
       setTriggerError(false);
-
       setIncomingDataForm(employeeData);
 
-      event.target.reset();
+      (event.target as HTMLFormElement).reset();
 
     }
 
@@ -84,7 +85,7 @@ const FormCreateEmployees = () => {
 
   return(
     <>
-    <form action="/" id="create-employee" onSubmit={()=>{saveEmployee(event)}} className="flex flex-col p-4">
+    <form action="/" id="create-employee" onSubmit={saveEmployee} className="flex flex-col p-4">
 
           <label htmlFor="firstName" className="input-label">First Name</label>
           <input type="text" id="firstName" name="firstName" minLength={2} required/>
@@ -115,7 +116,7 @@ const FormCreateEmployees = () => {
 
             <label htmlFor="zipCode" className="input-label">Zip Code</label>
             {/* <input id="zipCode" name="zipCode	" type="number" min={00000} max={99999}/> */}
-            <input id="zipCode" name="zipCode" type="text" minLength="5" maxLength="5" pattern="[0-9]*" required/>
+            <input id="zipCode" name="zipCode" type="text" inputMode="numeric" pattern={"[0-9]*"} minLength={5} maxLength={5} required/>
 
             </fieldset>
 
@@ -129,7 +130,7 @@ const FormCreateEmployees = () => {
 
           {triggerError !== undefined && (
   triggerError ? (
-    <p className="text-white font-bold py-2 px-4 border-b-4 bg-red-500 rounded mt-8" type="submit">
+    <p className="text-white font-bold py-2 px-4 border-b-4 bg-red-500 rounded mt-8">
       Unavailable Datas
     </p>
   ) : (
@@ -140,7 +141,9 @@ const FormCreateEmployees = () => {
 )}
         </form>
 
-        {formIsOk ? (<Modal success={formIsOk} closeModal={closeModal} newUser={incomingDataForm} />):(null)}
+    {formIsOk && incomingDataForm ? (
+          <Modal success={formIsOk} closeModal={closeModal} newUser={incomingDataForm} 
+  />) : null}
         
       </>
 
