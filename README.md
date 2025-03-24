@@ -1,7 +1,9 @@
 ## Description du projet
 
-Ce projet est une application web qui permet de visualiser des données utilisateurs dans un tableau de données, récupérées depuis un formulaire (ou via un mock de données).
-
+Ce projet est un exerice de refonte d'une application web, qui permet de gérer des données utilisateurs de type "employées". 
+Composé d'un formulaire d'ajout d'utilisateur, et d'un tableau d'affichage et de tris.
+Si aucune donnée n'est passée par le formulaire, un mock de données ((`src/datas/mockEmployees.json`)
+) est présent pour une utilisation minimal du projet 
 L'application utilise [Next.js](https://nextjs.org), Redux, Tailwind.
 
 👉 https://sport-see-ocr.vercel.app/
@@ -10,8 +12,13 @@ L'application utilise [Next.js](https://nextjs.org), Redux, Tailwind.
 ## Fonctionnalités
 
 * Affichage des données utilisateurs dans un tableau interactif (Datatable-like)
-* Plusieurs élèments sont d'anciens plugins Jquery, qui ont été convertis en ReactJs.
-L'un d'entre eux, Modal, a été reconstruit en tant que plugin, publié sur NPM.
+* Le projet stocke et manage les données Front via Redux (state manager)
+* Plusieurs élèments sont d'anciens plugins Jquery, et ont été converti en composant ReactJS.
+
+L'un d'entre eux, `Modal`, a été reconstruit en tant que plugin publiable, disponible ici sur [NPM](https://www.npmjs.com/package/milooz-modal-ts-rc)
+
+N.B: Les élèments de type "datePicker" ont été re-intégré simplement en élèment HTML5 Standard `<input type="date"/>` (https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/date).
+
 
 ## Dépendances
 * Next
