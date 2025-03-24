@@ -32,7 +32,7 @@ const DataTable = ({initialDatas} : DataTableProps) => {
   //Set Local State Number of Element by Page && Pagination Array
   function entriesByPage(inputValue:string){
 
-    let entry = parseInt(inputValue);
+    const entry = parseInt(inputValue);
 
     // Record number of Element by Pages 
     setElementsPerPage(entry);
@@ -54,7 +54,7 @@ const DataTable = ({initialDatas} : DataTableProps) => {
     }
 
     //Set Array of Pagination
-    let links=[];
+    const links=[];
     for (let i = 1; i <= numberOfPages; i++) {
       links.push(i);
     }
