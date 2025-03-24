@@ -5,7 +5,7 @@ import '@/styles/components/Pagination.scss';
 export interface PaginationProps {
   counterPages: number[];
   pageIndex: number;
-  setPageIndex: Function
+  setPageIndex: (pageNumber: number) => void;
 }
 
 
