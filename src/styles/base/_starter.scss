@@ -1,15 +1,16 @@
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #ededed;
+  --background: #0a0a0a;
   --black-color:#222;
   --white-color:#FFF;
+  --main-color:var(--color-white);
   --debeug-color:crimson;
   --debeug:3px dotted var(--debeug-color);
   --radius:5px;
 }
 
 body {
-  color: var(--color);
+  color: var(--main-color);
   background: var(--background);
   font: {
     size:var(--body-font-size);
@@ -62,7 +63,9 @@ body {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
-    --color:white;
-    --body-font-size:1rem;
   }
+
+  #employee-table .heading .order-icon {
+    color:var(--white-color);
+   }
 }
