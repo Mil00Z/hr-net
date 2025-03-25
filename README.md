@@ -1,23 +1,25 @@
 ## Description du projet
 
 Ce projet est un exerice de refonte d'une application web, qui permet de gérer des données utilisateurs de type "employées". 
-Composé d'un formulaire d'ajout d'utilisateur, et d'un tableau d'affichage et de tris.
-Si aucune donnée n'est passée par le formulaire, un mock de données ((`src/datas/mockEmployees.json`)
-) est présent pour une utilisation minimal du projet 
-L'application utilise [Next.js](https://nextjs.org), Redux, Tailwind.
+Composé d'un formulaire d'ajout d'utilisateur, puis d'un tableau d'affichage et de tris.
+Si aucune donnée n'est passée par le formulaire, un mock de données (`mockEmployees.json`) est appelé pour simuler un affichage standard. 
+L'application utilise [Next.js](https://nextjs.org), Redux, du SASS couplé à des élèments en TailwindCSS.
 
-👉 https://sport-see-ocr.vercel.app/
+
+👉 https://hrnet-project-ocr.vercel.app/
+
 
 
 ## Fonctionnalités
 
-* Affichage des données utilisateurs dans un tableau interactif (Datatable-like)
+* Récupération de données de formulaire
+* Affichage des données utilisateurs dans un tableau (Datatable-like)
 * Le projet stocke et manage les données Front via Redux (state manager)
-* Plusieurs élèments sont d'anciens plugins Jquery, et ont été converti en composant ReactJS.
+* Plusieurs élèments sont d'anciens plugins Jquery, et ont été converti en composant simple ReactJS.
 
 L'un d'entre eux, `Modal`, a été reconstruit en tant que plugin publiable, disponible ici sur [NPM](https://www.npmjs.com/package/milooz-modal-ts-rc)
 
-N.B: Les élèments de type "datePicker" ont été re-intégré simplement en élèment HTML5 Standard `<input type="date"/>` (https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/date).
+N.B: Les élèments de type "datePicker" ont été re-intégré simplement en élèment HTML5 Standard natif `<input type="date"/>` (https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/date).
 
 
 ## Dépendances
@@ -95,8 +97,8 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 
 
 
-## Deploy on Vercel
+## Deploiement sur Vercel
+https://hrnet-project-ocr.vercel.app/
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
