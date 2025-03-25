@@ -4,7 +4,7 @@ module.exports = {
     es2021: true,  // Utilise les fonctionnalités ECMAScript 2021.
   },
   extends: [
-    'plugin:react/recommended', // Utilise les règles recommandées pour React.
+    'plugin:@next/next/recommended',
     'plugin:@typescript-eslint/recommended', // Utilise les règles recommandées pour TypeScript.
     'plugin:prettier/recommended', // Intègre Prettier pour le formatage du code.
   ],
@@ -21,7 +21,7 @@ module.exports = {
     '@typescript-eslint', // Ajoute le plugin TypeScript pour ESLint.
   ],
   rules: {
-    "react/no-unescaped-entities": "off" // Désactive la règle qui empêche les entités non échappées dans le JSX.
+    "react/no-unescaped-entities": "on",
   },
   settings: {
     react: {
