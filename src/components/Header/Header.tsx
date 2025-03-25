@@ -23,7 +23,7 @@ const Header = () => {
               height={38}
               priority
             />
-          <h1>HRnet</h1>
+          <h1 className="text-white">HRnet</h1>
         </Link>
     </header>
   </>

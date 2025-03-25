@@ -33,9 +33,9 @@ const EmployeesList = () => {
         <div className="datas-source my-2">
         Source of datas : 
           {!datasStoreAvailable ? (<>
-              <p className="text-orange-900 font-semibold text-medium">'Mock Datas'</p>
-            </>) : (<>
-              <p className="text-green-900 font-semibold text-medium">'FormDatas Employees'</p>
+              <p className="text-orange-900 font-semibold text-medium">mockEmployees.json</p>
+            </>) : (<> 
+            <p className="text-green-900 font-semibold text-medium">Form Update</p>
           </>)
           }
         </div>
@@ -44,7 +44,7 @@ const EmployeesList = () => {
       
     </section> 
 
-    <Link href="/" className="btn">Home</Link>
+    <Link href="/" className="btn font-semibold hover:bg-blue-900 hover:text-white">Go to Home</Link>
 
   </>
 
