@@ -173,7 +173,7 @@ const DataTable = ({initialDatas} : DataTableProps) => {
               ) : (
                 <tr className="bg-white dark:bg-gray-800 dark:border-gray-700 border border-gray-800">
                   <>
-                    <td className="px-6 py-4 bg-red-600  text-white">
+                    <td className="px-6 py-4 bg-red-600 text-white">
                       Aucun résultat trouvé
                     </td>
                   </>
@@ -184,11 +184,10 @@ const DataTable = ({initialDatas} : DataTableProps) => {
       </table>
 
 
-      <div className="bottom px-2 my-2 flex justify-between items-center">
+      <div className="bottom my-2 flex justify-between items-center">
 
-        <div className="details my-2 text-black-900 text-md"> Show <span className="text-lg font-semibold text-yellow-600">{searchedDatas.length}</span> entries of <span className="text-lg font-bold text-red-600">{initialDatas.length}</span></div>
+        <div className="details my-2 text-black-900 text-md"> Show <span className="text-lg font-semibold text-yellow-500">{searchedDatas.length}</span> entries of <span className="text-lg font-semibold text-blue-900">{initialDatas.length}</span></div>
         
-
         <Pagination counterPages={counterPages} pageIndex={pageIndex} setPageIndex={setPageIndex} />
 
       </div>
