@@ -9,10 +9,11 @@ import { employeesSlice } from '@/redux/employees/employesSlice';
 import {Employee} from '@/redux/employees/employesSlice'; 
 
 
-import Modal from '../Modal/Modal';
+// import Modal from '../Modal/Modal';
+import {Modal} from 'milooz-modal-ts-rc';
 
 
-//Datas
+//Datas Imported
 import states from '@/datas/states.json';
 import departments from '@/datas/departments.json';
 
@@ -55,8 +56,7 @@ const FormCreateEmployees = () => {
 
     const formDatas = new FormData(event.target as HTMLFormElement);
 
-    // console.log(formDatas);
-
+    
     //Micro testing One value of input is bad
     if(!formDatas.get('zipCode')) {
 
@@ -142,7 +142,10 @@ const FormCreateEmployees = () => {
         </form>
 
     {formIsOk && incomingDataForm ? (
-          <Modal success={formIsOk} closeModal={closeModal} newUser={incomingDataForm} 
+      <Modal 
+          success={formIsOk} 
+          closeModal={closeModal} 
+          newUser={incomingDataForm} 
   />) : null}
         
       </>
