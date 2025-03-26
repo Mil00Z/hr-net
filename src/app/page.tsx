@@ -2,9 +2,7 @@
 
 import Link from "next/link";
 
-
 import FormCreateEmployees from '@/components/Forms/FormCreateEmployees';
-
 
 export default function Home() {
 

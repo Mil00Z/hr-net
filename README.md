@@ -1,3 +1,12 @@
+[![forthebadge](https://forthebadge.com/images/badges/made-with-next-13.svg)](https://forthebadge.com) 
+[![forthebadge](https://forthebadge.com/images/badges/made-with-typescript.svg)](https://forthebadge.com)
+
+[![forthebadge](https://forthebadge.com/images/badges/uses-html.svg)](https://forthebadge.com)
+[![forthebadge](https://forthebadge.com/images/badges/uses-css.svg)](https://forthebadge.com)
+
+[![forthebadge](https://forthebadge.com/images/badges/imposter-syndrome.svg)](https://forthebadge.com)
+
+
 ## Description du projet
 
 Ce projet est un exerice de refonte d'une application web, qui permet de gérer des données utilisateurs de type "employées". 
@@ -68,9 +77,9 @@ bun dev
 
 ## Utilisation
 * Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-* Remplir le formulaire et soumettre 
-OR
-se rendre sur la page de listing des employées (`http://localhost:3000/employees`)
+* Remplir le formulaire correctement et soumettre 
+OU BIEN
+se rendre directement sur la page de listing des employées (`/employees`)
 
 
 ## Structure du projet
@@ -86,7 +95,6 @@ se rendre sur la page de listing des employées (`http://localhost:3000/employee
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
 
-
 ## Next Universe
 To learn more about Next.js, take a look at the following resources:
 
@@ -96,9 +104,5 @@ To learn more about Next.js, take a look at the following resources:
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
 
-
 ## Deploiement sur Vercel
 https://hrnet-project-ocr.vercel.app/
-
-
-
