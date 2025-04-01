@@ -1,6 +1,7 @@
 select{
-  background: var(--black-color);
-  color: var(--white-color);
+  width: max-content;
+  background: var(--white-color);
+  color: var(--black-color);
   padding: .5rem;
   border-radius: 5px;
 }
@@ -10,5 +11,4 @@ input{
   color: var(--black-color);
   padding: .5rem;
   border-radius: 5px;
-
 }
