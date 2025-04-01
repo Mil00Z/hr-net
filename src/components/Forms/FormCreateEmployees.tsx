@@ -6,7 +6,7 @@ import {nanoid} from '@reduxjs/toolkit';
 
 import { RootState } from '@/redux/store';
 import { employeesSlice } from '@/redux/employees/employesSlice';
-import {Employee} from '@/redux/employees/employesSlice'; 
+import {Employee} from '@/types/employees.types'; 
 
 
 // import Modal from '../Modal/Modal';

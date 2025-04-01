@@ -1,14 +1,7 @@
-import { Employee } from '@/redux/employees/employesSlice';
+import { Employee } from '@/types/employees.types';
 
 import '@/styles/components/Modal.scss';
 
-
-// export type User = {
-//   firstName: string;
-//   lastName: string;
-//   id?: string;
-//   [key: string]: string | undefined; 
-// }
 
 export interface ModalProps {
   success: boolean;
